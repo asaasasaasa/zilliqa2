@@ -7,7 +7,7 @@ RUN yarn install
 COPY . ./
 RUN yarn build
 
-FROM nginx:stable-alpine as production-stage
+FROM nginx:1.29.5-alpine3.23 as production-stage
 COPY --from=build-stage /app/build /usr/share/nginx/html
 EXPOSE 80
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
